@@ -46,10 +46,15 @@ export async function getMyProfile() {
     return checkError(response);
 }
 
-export async function sendMessage(message) {
+export async function sendMessage(recipient_id, from_email, text, URL) {
     const response = await client
         .from('messages')
-        .insert(message);
+        .insert({
+            recipient_id: recipient_id,
+            from_email: from_email,
+            text: text,
+            image_url: URL
+        });
 
     return checkError(response);
 }
@@ -85,6 +90,21 @@ export async function decrementRating(id) {
     return checkError(response);
 }
 
+export function makeImageUrl(imageKey) {
+    return `${SUPABASE_URL}/storage/v1/object/public/${imageKey}`;
+}
+
+export async function uploadImage(myImage) {
+    const response = await client
+        .storage
+        .from('delaney')
+        .upload(myImage.name, myImage, {
+            cacheControl: '3600',
+            upsert: false
+        });
+
+    return checkError(response);
+}
 export function getUser() {
     return client.auth.session() && client.auth.session().user;
 }
