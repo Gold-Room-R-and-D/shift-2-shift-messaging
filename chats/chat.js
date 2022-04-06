@@ -12,6 +12,8 @@ const profileContainer = document.querySelector('.profile-container');
 const usernameHeader = document.querySelector('.username-header');
 const usernameEl = document.querySelector('.username');
 
+const form = document.querySelector('form');
+
 const logoutButton = document.getElementById('logout');
 
 window.addEventListener('load', async ()=>{
@@ -38,6 +40,8 @@ export async function fetchAndDisplay(){
     profileContainer.append(messagesEl, profileRatingEl);
 
 }
+
+
 
 logoutButton.addEventListener('click', () => {
     logout();
