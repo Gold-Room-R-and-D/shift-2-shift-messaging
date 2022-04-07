@@ -19,8 +19,8 @@ const logoutButton = document.getElementById('logout');
 window.addEventListener('load', async ()=>{
     await client
         .from('chats')
-        .on('INSERT', payload => {
-            console.log('Change received!' , payload)
+        .on('INSERT', (payload) => {
+            //console.log('Change received!' , payload)
             const chatItemOuterEl = document.createElement('div');
             const chatSenderEl = document.createElement('p');
             const chatMessageEl = document.createElement('p');
